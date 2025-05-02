@@ -1,34 +1,36 @@
 // 1. Constructor para Libros
 function Libro(id, titulo, autor, año) {
-    
     this.id = id
     this.titulo = titulo
     this.autor = autor
     this.año = año
+    this.disponible = true
 
-    this.prestar = function (){
-        this.disponible = false
+    this.prestar = function () {
+        this.disponible = false;
     }
-
 }
 
 // 2. Constructor para Usuarios
 function Usuario(id, nombre, email) {
-
     this.id = id
     this.nombre = nombre
     this.email = email
+    this.librosPrestados = 0;
 
+    this.prestarLibro = function(){
+        this.librosPrestados++;
+    }
 }
 
 // 3. Constructor para Préstamos
 function Prestamo(id, libroId, usuarioId, fechaPrestamo) {
-
     this.id = id
-    this.libroId = libroId
+    this.libroId
     this.usuarioId = usuarioId
-    this.fechaPrestamo = fechaPrestamo
-
+    this.fechaPrestamo = new Date (fechaPrestamo)
+    this.fechaDevolucion = null;
+    this.estado = "Prestado";
 }
 
 // Base de datos
@@ -115,9 +117,8 @@ function init() {
 // Funciones para renderizar las tablas (debes implementarlas)
 function renderLibros() {
     // Implementa la lógica para mostrar los libros en la tabla
-    
-        const tbody = document.querySelector('#tablaLibros');
-        tbody.innerHTML = '';
+    const tbody = document.querySelector('#tablaLibros tbody');
+    tbody.innerHTML = '';
         
         biblioteca.libros.forEach(libro => {
             const tr = document.createElement('tr');
@@ -132,14 +133,13 @@ function renderLibros() {
             `;
             tbody.appendChild(tr);
         });
-    }
+}
 
 
 function renderUsuarios() {
-    // Implementa la lógica para mostrar los usuarios en la tabla
-
+    // Implementa la lógica para mostrar los libros en la tabla
     const tbody = document.querySelector('#tablaUsuarios tbody');
-        tbody.innerHTML = '';
+    tbody.innerHTML = '';
         
         biblioteca.usuarios.forEach(usuario => {
             const tr = document.createElement('tr');
@@ -153,32 +153,27 @@ function renderUsuarios() {
             `;
             tbody.appendChild(tr);
         });
-    }
-
-
+}
 
 function renderPrestamos() {
     // Implementa la lógica para mostrar los préstamos en la tabla
-
     const tbody = document.querySelector('#tablaPrestamos tbody');
     tbody.innerHTML = '';
-    
-    biblioteca.prestamos.forEach(prestamo => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${prestamo.id}</td>
-            <td>${prestamo.libroId}</td>
-            <td>${prestamo.usuarioId}</td>
-            <td>${prestamo.fechaPrestamoId}</td>
-
-                <button class="action-btn delete-btn" onclick="devolverPrestamo(${prestamo.id})">Eliminar</button>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    });
+        
+        biblioteca.prestamos.forEach(prestamo => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${prestamo.id}</td>
+                <td>${prestamo.libroId}</td>
+                <td>${prestamo.usuarioId}</td>
+                <td>${prestamo.fechaPrestamo}</td>
+                <td>
+                    <button class="action-btn delete-btn" onclick="devolverPrestamo(${prestamo.id})">Devolver</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
 }
-
-
 
 // Iniciar la aplicación
 window.onload = init;

@@ -13,12 +13,12 @@
     <div class="section" id="libros">
         <h2>Gestión de Libros</h2>
         <!-- Formulario para agregar libros -->
-
+        
         <div class="form-group">
             <input type="text" id="nuevoLibroTitulo" placeholder="Título del libro">
-            <input type="text" id="NuevoAutor" placeholder="Autor del libro">
-            <input type="number" id="NuevoAño" placeholder="Año de publicacion">
-            <button onclick="agregarNuevoLibro()">Agregar</button>
+            <input type="text" id="nuevoLibroAutor" placeholder="Autor del libro">
+            <input type="number" id="nuevoLibroAño" placeholder="Año de publicación">
+            <button onclick="agregarNuevoLibro()">Agregar Libro</button>
         </div>
 
         <table id="tablaLibros">
@@ -42,9 +42,9 @@
         <!-- Formulario para agregar usuarios -->
 
         <div class="form-group">
-            <input type="text" id="NuevoNombre" placeholder="Nombre Completo">
-            <input type="text" id="Correo" placeholder="Correo @ejemplo.com">
-            <button onclick="agregarNuevoLibro()">Agregar</button>
+            <input type="text" id="nuevoNombre" placeholder="Nombre Completo">
+            <input type="text" id="nuevoCorreo" placeholder="correo@ejemplo.com">
+            <button onclick="agregarNuevoLibro()">Agregar Usuario</button>
         </div>
 
         <table id="tablaUsuarios">
@@ -65,21 +65,19 @@
     <div class="section" id="prestamos">
         <h2>Gestión de Préstamos</h2>
         <!-- Formulario para manejar préstamos -->
-
         <div class="form-group">
-            <select>
-                <option value="valor 1">selecciona un libro</option>
-                <option value="valor 2">Libro 1</option>
-                <option value="valor 3">Libro 2</option>
+            <select name="select">
+                <option value="value1" selected>Seleccione un libro</option>
+                <option value="value2">Value 2</option>
+                <option value="value3">Value 3</option>
             </select>
-            <select>
-                <option value="valor 1">Selecciona un usuario</option>
-                <option value="valor 2">Usuario 1</option>
-                <option value="valor 3">Usuario 2</option>
+            <select name="select">
+                <option value="value1" selected>Seleccione un usuario</option>
+                <option value="value2">Value 2</option>
+                <option value="value3">Value 3</option>
             </select>
-            <button onclick="agregarNuevoLibro()">Agregar</button>
+            <button onclick="agregarNuevoLibro()">Realizar Préstamo</button>
         </div>
-
         <table id="tablaPrestamos">
             <thead>
                 <tr>
